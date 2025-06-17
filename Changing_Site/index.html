@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    
+
+    <!--=============== Bootstrap ===============-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    />
+
+    <!--=============== REMIXICONS ===============-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css"
+    />
+
+    <!--=============== SWIPER CSS ===============-->
+    <link rel="stylesheet" href="CSS\swiper-bundle.min.css" />
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <title>E-booksite</title>
+
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyA8-GxDfYm1jb7hf5U2dxT6ZmS1FoZlTi8",
+        authDomain: "ebook-site-b964b.firebaseapp.com",
+        projectId: "ebook-site-b964b",
+        storageBucket: "ebook-site-b964b.appspot.com",
+        messagingSenderId: "975190980531",
+        appId: "1:975190980531:web:ecc255a4941947bdf1de9a",
+  };
+
+  const app = initializeApp(firebaseConfig);
+</script>
+  </head>
+  <body>
+    <!--==================== HEADER ====================-->
+    <header class="header" id="header">
+      <nav class="nav container">
+        <a href="#" class="nav__logo"> <i class="ri-book-3-line"></i> E-Book</a>
+
+        <div class="nav__menu">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#home" class="nav__link active-link">
+                <i class="ri-home-line"></i>
+                <span>Home</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#discount" class="nav__link">
+                <i class="ri-fire-line"></i>
+                <span>Featured</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#new" class="nav__link">
+                <i class="ri-award-line"></i>
+                <span>Hot Picks</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a
+                href="all-books.html"
+                class="nav__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="ri-leaf-line"></i>
+                <span>New Arrivals</span>
+              </a>
+            </li>
+
+            <li class="nav__item">
+              <a href="#testimonial" class="nav__link">
+                <i class="ri-message-3-line"></i>
+                <span>Testimonial</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nav__actions">
+          <i class="ri-user-line login-button" id="login-button"></i>
+          <i class="ri-moon-line change-theme" id="theme-button"></i>
+          <i class="ri-admin-line" id="admin-login-btn" title="Admin Login"></i>
+          <i
+            class="ri-upload-cloud-2-line"
+            id="upload-toggle"
+            title="Upload Book"
+            style="display: none"
+          ></i>
+        </div>
+      </nav>
+    </header>
+
+    <!--==================== SEARCH ====================-->
+    <div class="search" id="search-content">
+      <form action="" class="search__form">
+        <i class="ri-search-line search__icon"></i>
+        <input
+          type="Search"
+          placeholder="What are you looking for?"
+          class="search__input"
+        />
+      </form>
+      <i class="ri-close-line search__close" id="search-close"></i>
+    </div>
+
+    <!--==================== LOGIN ====================-->
+    <div class="login grid" id="login-content">
+      <form action="" class="login__form grid">
+        <h3 class="login__tittle">Log In</h3>
+        <div class="login__group grid">
+          <div>
+            <label for="login-email" class="login__label">Email</label>
+            <input
+              type="email"
+              class="login__input"
+              placeholder="Write your Email"
+              id="login-email"
+            />
+          </div>
+          <div>
+            <label for="login__pass" class="login__label">Password</label>
+            <input
+              type="Password"
+              class="login__input"
+              placeholder="Enter Your Password"
+              id="login__pass"
+            />
+          </div>
+        </div>
+
+        <div>
+          <span class="login__signup">
+            You do not have an account? <a href="#">Sign up</a>
+          </span>
+          <a href="#" class="login__forgot"> Forgot password </a>
+
+          <button type="submit" class="login__button button">Log In</button>
+        </div>
+      </form>
+
+      <i class="ri-close-line login__close" id="login-close"></i>
+    </div>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+      <!--==================== HOME ====================-->
+      <section class="home section" id="home">
+        <div class="home__container container grid">
+          <div class="home__data">
+            <h1 class="home__tittle">
+              <span id="typewriter-line1"></span><br />
+              <span id="typewriter-line2"></span>
+            </h1>
+
+            <p class="home__description">
+              <span id="home-typewriter"></span><br />
+              We have a wide range of books to choose from.
+            </p>
+
+            <a href="#" class="button magnetic-btn">Explore Books</a>
+          </div>
+          <div class="home__images">
+            <div class="home__swiper swiper">
+              <div class="swiper-wrapper">
+                <article class="home__article swiper-slide">
+                  <img
+                    src="Books\BK Photos\psychology money.jpg"
+                    alt="image"
+                    class="home__img"
+                  />
+                </article>
+
+                <article class="home__article swiper-slide">
+                  <img
+                    src="Books\BK Photos/48 laws of power.jpg"
+                    alt="image"
+                    class="home__img"
+                  />
+                </article>
+
+                <article class="home__article swiper-slide">
+                  <img
+                    src="Books\BK Photos/the-richest-man-in-babylon-original.jpg"
+                    alt="image"
+                    class="home__img"
+                  />
+                </article>
+
+                <article class="home__article swiper-slide">
+                  <img
+                    src="Books\BK Photos/atomic habit.jpg "
+                    alt="image"
+                    class="home__img"
+                  />
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== SERVICES ====================-->
+      <section class="services section">
+        <div class="services__container grid">
+          <article class="services__card">
+            <i class="ri-advertisement-line" id="icon-ad"></i>
+            <h3 class="services__title">AD Free</h3>
+            <p class="services__description">
+              Focus on your reading. No ads. No distractions.
+            </p>
+          </article>
+          <article class="services__card">
+            <i class="ri-global-line" id="icon-globe"></i>
+            <h3 class="services__title">Instant Access</h3>
+            <p class="services__description">
+              Read your favorite e-books instantly without downloads
+            </p>
+          </article>
+          <article class="services__card">
+            <i class="ri-customer-service-2-line" id="icon-support"></i>
+            <h3 class="services__title">24/7 Support</h3>
+            <p class="services__description">Call us anytime</p>
+          </article>
+        </div>
+      </section>
+
+      <!--==================== UPLOAD====================-->
+
+      <div class="upload__modal" id="upload-modal" style="display: none">
+        <form id="uploadForm" class="upload__form">
+          <h2 class="upload__title">Upload New Book</h2>
+          <input
+            type="text"
+            id="bookTitle"
+            placeholder="Book Title"
+            required
+            class="join__input"
+          />
+          <input
+            type="text"
+            id="bookImage"
+            placeholder="Image URL"
+            required
+            class="join__input"
+          />
+          <input
+            type="text"
+            id="bookPDF"
+            placeholder="PDF/Drive Link"
+            required
+            class="join__input"
+          />
+          <input
+            type="text"
+            id="bookAuthor"
+            placeholder="Author Name"
+            class="join__input"
+          />
+
+          <div class="upload__buttons">
+            <button type="submit" class="button">Upload</button>
+
+            <button
+              type="button"
+              class="button upload__close"
+              id="upload-close"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            const uploadToggle = document.getElementById("upload-toggle");
+            const uploadModal = document.getElementById("upload-modal");
+            const uploadClose = document.getElementById("upload-close");
+
+            uploadToggle?.addEventListener("click", () => {
+              uploadModal.style.display = "flex";
+            });
+
+            uploadClose?.addEventListener("click", () => {
+              uploadModal.style.display = "none";
+            });
+          });
+        </script>
+      </div>
+
+      <!--==================== Featured ====================-->
+      <section class="discount section" id="discount">
+        <div class="discount__container container grid">
+          <div class="discount__data">
+            <h2 class="discount__title section_title">
+              <span id="typewriter-text"></span>
+            </h2>
+
+            <p class="discount__description">
+              “Clarity about what matters provides clarity about what does not.”
+            </p>
+
+            <a
+              href="https://drive.google.com/file/d/10NOPpjFdvvbb5AG_-m0WsSVBZ8qkZBdd/view?usp=drive_link"
+              class="button magnetic-btn"
+              >Read Now</a
+            >
+          </div>
+
+          <div class="discount__images interactive-wrapper">
+            <img
+              src="Books/BK Photos/deepwork.jpg"
+              alt="image"
+              class="discount__img-1 interactive-image"
+            />
+          </div>
+        </div>
+      </section>
+      <script>
+        document
+          .querySelectorAll(".discount__img-1, .discount__img-2")
+          .forEach((img) => {
+            img.addEventListener("mousemove", (e) => {
+              const rect = img.getBoundingClientRect();
+              const x = e.clientX - rect.left;
+              const y = e.clientY - rect.top;
+              const centerX = rect.width / 2;
+              const centerY = rect.height / 2;
+              const rotateX = ((y - centerY) / centerY) * 10;
+              const rotateY = ((x - centerX) / centerX) * -10;
+
+              img.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+            });
+
+            img.addEventListener("mouseleave", () => {
+              img.style.transform = "rotateX(0deg) rotateY(0deg)";
+            });
+          });
+      </script>
+
+      <!--==================== NEW BOOKS UPDATED ====================-->
+
+      <section class="new section" id="new">
+        <h2 class="section__title">Top Picks of 2024</h2>
+        <div id="newBooksContainer" class="book-grid container"></div>
+        <div
+          class="see-all-container"
+          id="seeAllBtnSection"
+          style="display: none"
+        >
+          <div class="see-all-container">
+  <a href="all-books.html" class="see-all-button" target="_blank">See All →</a>
+</div>
+
+
+        </div>
+      </section>
+
+      <!--==================== JOIN ====================-->
+      <section class="join section">
+        <div class="join__container">
+          <!-- Background image -->
+          <img src="Photos/join-bg.jpg" alt="image" class="join__bg" />
+
+          <!-- Overlay content -->
+          <div class="join__data container grid">
+            <h2 class="join__title section__title">
+              Subscribe To Receive <br />
+              The Latest Updates
+            </h2>
+
+            <form class="join__form" id="joinForm">
+              <input
+                type="email"
+                class="join__input"
+                placeholder="Enter Email"
+                required
+              />
+              <button type="submit" class="join__button button">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!--==================== TESTIMONIAL ====================-->
+      <section class="testimonial section" id="testimonial">
+        <h2 class="section__title">Customer Opinions</h2>
+        <div class="testimonial__container container">
+          <div class="testimonial__swiper swiper">
+            <div class="swiper-wrapper">
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="https://i.pravatar.cc/100?img=15"
+                  alt="Aria Fernandez"
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Aria Fernandez</h2>
+                <p class="testimonial__description">
+                  “This is hands down the best e-book platform I’ve ever used.
+                  Super clean UI and instant access!”
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-fill"></i>
+                </div>
+              </article>
+
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="https://i.pravatar.cc/100?img=32"
+                  alt="Rohan Malhotra"
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Rohan Malhotra</h2>
+                <p class="testimonial__description">
+                  “I found every book I was looking for — no ads, no clutter.
+                  It’s a reader’s paradise.”
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </article>
+
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="https://i.pravatar.cc/100?img=47"
+                  alt="Elena Novak"
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Elena Novak</h2>
+                <p class="testimonial__description">
+                  “I love the design, animations, and simplicity. Uploading and
+                  reading books feels effortless!”
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-half-fill"></i>
+                </div>
+              </article>
+
+              <article class="testimonial__card swiper-slide">
+                <img
+                  src="https://i.pravatar.cc/100?img=31"
+                  alt="Liam Bennett"
+                  class="testimonial__img"
+                />
+                <h2 class="testimonial__title">Liam Bennett</h2>
+                <p class="testimonial__description">
+                  “Amazing experience. Fast, responsive, and great collection of
+                  motivational books.”
+                </p>
+                <div class="testimonial__stars">
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                  <i class="ri-star-fill"></i>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!--==================== FOOTER ====================-->
+
+    <!--========== FOOTER WAVE ==========-->
+    <div class="footer__wave">
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        class="footer__wave-svg"
+      >
+        <path
+          d="M0,0V46.29c47.09,22.1,104.42,29.05,158,17.45C267.06,42.88,347.18-2.29,428,1.16s168.56,61.69,250,67.19C779.72,74.66,861,49.71,942,34.78S1102.63,13.57,1200,33.78V0Z"
+          fill="var(--container-color)"
+        ></path>
+      </svg>
+    </div>
+
+    <!--========== FOOTER ==========-->
+    <footer class="footer">
+      <div class="footer__container container grid">
+        <div class="footer__data grid">
+          <!-- About -->
+          <div>
+            <h3 class="footer__title">About</h3>
+            <ul class="footer__links">
+              <li><a href="#" class="footer__link">Awards</a></li>
+              <li><a href="#" class="footer__link">FAQs</a></li>
+              <li><a href="#" class="footer__link">Privacy Policy</a></li>
+              <li><a href="#" class="footer__link">Terms of Service</a></li>
+            </ul>
+          </div>
+
+          <!-- Company -->
+          <div>
+            <h3 class="footer__title">Company</h3>
+            <ul class="footer__links">
+              <li><a href="#" class="footer__link">Blogs</a></li>
+              <li><a href="#" class="footer__link">Community</a></li>
+              <li><a href="#" class="footer__link">Our Team</a></li>
+              <li><a href="#" class="footer__link">Help Center</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact -->
+          <div>
+            <h3 class="footer__title">Contact</h3>
+            <ul class="footer__links">
+              <li>
+                <address class="footer__info">
+                  Not mention<br />1234-567-890
+                </address>
+              </li>
+              <li>
+                <address class="footer__info">
+                  mdasbak##@email.com<br />1234-567-890
+                </address>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Newsletter -->
+          <div>
+            <h3 class="footer__title">Newsletter</h3>
+            <form class="footer__form" id="footerNewsletterForm">
+              <input
+                type="email"
+                class="footer__input"
+                placeholder="Your Email"
+                required
+              />
+              <button class="footer__submit" type="submit">Send</button>
+            </form>
+          </div>
+
+          <!-- Social -->
+          <div>
+            <h3 class="footer__title">Social</h3>
+            <ul class="footer__links">
+              <li>
+                <div class="footer__social">
+                  <a
+                    href="https://facebook.com/"
+                    target="_blank"
+                    class="footer__social-link"
+                  >
+                    <i class="ri-facebook-circle-line"></i>
+                  </a>
+                  <a
+                    href="https://instagram.com/"
+                    target="_blank"
+                    class="footer__social-link"
+                  >
+                    <i class="ri-instagram-line"></i>
+                  </a>
+                  <a
+                    href="https://twitter.com/"
+                    target="_blank"
+                    class="footer__social-link"
+                  >
+                    <i class="ri-twitter-x-line"></i>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <span class="footer__copy">&#169; All Rights Reserved</span>
+    </footer>
+    <!-- Toast Container -->
+    <div id="form-toast" class="toast">✔️ You have successfully subscribed!</div>
+
+
+    <!--========== CURSOR ==========-->
+    <div class="cursor-trail" id="cursorTrail"></div>
+    <div id="cursorGlow"></div>
+
+    <!--========== SCROLL UP ==========-->
+    <!-- Back to Top Button -->
+   <!-- Button -->
+<button
+  class="scroll-button"
+  id="scroll-up"
+  title="Back to Top"
+>
+  <svg class="svgIcon" viewBox="0 0 384 512">
+    <path
+      d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+    />
+  </svg>
+</button>
+
+<!-- Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const backToTop = document.getElementById("scroll-up");
+
+    window.addEventListener("scroll", () => {
+      backToTop.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+</script>
+
+    <!--=============== SCROLLREVEAL ===============-->
+    <script src="JS\scrollreveal.min.js"></script>
+
+    <!--=============== SWIPER JS ===============-->
+    <script src="JS\swiper-bundle.min.js"></script>
+
+    <!--=============== MAIN JS ===============-->
+    <script type="module" src="JS/main.js"></script>
+
+    <!-- Firebase Core -->
+
+
+  </body>
+</html>

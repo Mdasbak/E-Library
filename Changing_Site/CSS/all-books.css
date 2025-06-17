@@ -1,0 +1,55 @@
+/* Default: Mobile-first styles already applied */
+
+/* Small devices (≥480px) */
+@media screen and (min-width: 480px) {
+  .book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .search__form {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+/* Medium devices (≥768px) */
+@media screen and (min-width: 768px) {
+  .book-grid {
+    grid-template-columns: repeat(3, 2fr);
+  }
+
+  .nav {
+    flex-wrap: nowrap;
+  }
+
+  .upload__form {
+    max-width: 500px;
+  }
+}
+
+/* Large devices (≥1024px) */
+@media screen and (min-width: 1024px) {
+  .book-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .nav__actions {
+    column-gap: 2rem;
+  }
+
+  .search__form {
+    max-width: 900px;
+  }
+}
+
+/* Extra large screens (≥1280px) */
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .book-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

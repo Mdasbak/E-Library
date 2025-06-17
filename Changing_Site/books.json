@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "image": "Books/BK Photos/atomic habit.jpg",
+    "pdf": "https://drive.google.com/file/d/1EaS2FrqvLBRhaVJyktMs0Vb2Uzo36ZY5/view?usp=drive_link"
+  },
+  {
+    "id": 2,
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "image": "Books/BK Photos/DEEE.jpg",
+    "pdf": "https://drive.google.com/file/d/10NOPpjFdvvbb5AG_-m0WsSVBZ8qkZBdd/view?usp=drive_link"
+  },
+  {
+    "id": 3,
+    "title": "The Richest Man in Babylon",
+    "author": "George S. Clason",
+    "image": "Books/BK Photos/the-richest-man-in-babylon-original.jpg",
+    "pdf": "https://drive.google.com/file/d/1GheOrtxPXxrXX8yo8r8JRjVGhtxw9YKP/view?usp=drive_link"
+  },
+   {
+    "id": 4,
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "image": "Books/BK Photos/psychology money.jpg",
+    "pdf": "https://drive.google.com/file/d/1-UHzTBo2Z-7yj9dteOdRUUeE5jfWOFKF/view?usp=drive_link"
+  }
+]
+
+ 
